@@ -69,7 +69,7 @@ Modelin 30 epoch boyunca gösterdiği öğrenme dinamikleri, doğruluk artışla
 * **mAP@50-95 (Yeşil Eğri):** Farklı IoU eşiklerinde modelin katı doğruluk payını gösteren bu metrik, 30 epoch boyunca düzenli bir artış göstererek **0.606** değerine tırmanmıştır. Bu durum, modelin kutu konumlandırmasında (localization) yüksek hassasiyet kazandığını kanıtlamaktadır.
 
 ### B. Precision (Kesinlik) ve Recall (Duyarlılık) Eğrileri
-![Precision ve Recall](precission_recall.jpg)
+![Precision ve Recall](precission_recall.png)
 
 * **Precision - Kesinlik (Mavi Eğri):** Modelin yaptığı tahminlerin ne kadarının doğru olduğunu gösterir. Eğitim sürecinin sonunda **0.963** gibi çok yüksek bir orana uluşarak yanlış pozitif (false positive) oranını minimumda tuttuğunu kanıtlamıştır.
 * **Recall - Duyarlılık (Turuncu Eğri):** Gerçek plaka nesnelerinin yüzde kaçının model tarafından başarıyla yakalandığını ifade eder. Eğitimin sonunda **0.958** seviyesine sabitlerek modelin sahadaki nesneleri kaçırma oranının son derece düşük olduğunu göstermiştir.
