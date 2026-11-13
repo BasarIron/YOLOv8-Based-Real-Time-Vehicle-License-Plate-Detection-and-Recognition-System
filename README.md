@@ -58,6 +58,24 @@ Lokal GPU ortamında (NVIDIA GeForce RTX 2070 Super) elde edilen deneysel sonuç
 
 ---
 
+## 📈 5.1. Eğitim Süreci ve Başarım Grafikleri Analizi
+
+Modelin 30 epoch boyunca gösterdiği öğrenme dinamikleri, doğruluk artışları ve genelleme yeteneği eğitim loglarından elde edilen grafiklerle doğrulanmıştır.
+
+### A. mAP@50 ve mAP@50-95 Gelişimi
+![mAP Metrikleri](mAPmetrics.png)
+
+* **mAP@50 (Mor Eğri):** İlk epoch'lardaki başlangıç dalgalanmalarının ardından model hızla öğrenmiş, eğitim ilerledikçe istikrarlı bir yükseliş trendi yakalayarak **0.975** seviyelerine ulaşmıştır (Füzyon/Final test aşamasında ~0.974).
+* **mAP@50-95 (Yeşil Eğri):** Farklı IoU eşiklerinde modelin katı doğruluk payını gösteren bu metrik, 30 epoch boyunca düzenli bir artış göstererek **0.606** değerine tırmanmıştır. Bu durum, modelin kutu konumlandırmasında (localization) yüksek hassasiyet kazandığını kanıtlamaktadır.
+
+### B. Precision (Kesinlik) ve Recall (Duyarlılık) Eğrileri
+![Precision ve Recall](precission_recall.jpg)
+
+* **Precision - Kesinlik (Mavi Eğri):** Modelin yaptığı tahminlerin ne kadarının doğru olduğunu gösterir. Eğitim sürecinin sonunda **0.963** gibi çok yüksek bir orana uluşarak yanlış pozitif (false positive) oranını minimumda tuttuğunu kanıtlamıştır.
+* **Recall - Duyarlılık (Turuncu Eğri):** Gerçek plaka nesnelerinin yüzde kaçının model tarafından başarıyla yakalandığını ifade eder. Eğitimin sonunda **0.958** seviyesine sabitlerek modelin sahadaki nesneleri kaçırma oranının son derece düşük olduğunu göstermiştir.
+
+---
+
 ## 📸 6. Gerçek Görüntülerle Test ve Değerlendirme (5 Fotoğraf Analizi)
 Ödev kapsamında telefon kamerası ile dış ortamda çekilen 5 farklı araç fotoğrafı sisteme girdi olarak verilmiş ve modelin başarımı test edilmiştir:
 
