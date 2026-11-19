@@ -4,9 +4,9 @@ Bu proje, **Bilgisayarlı Görü (Computer Vision) – Derin Öğrenme Uygulamas
 
 ---
 
-## 📋 1. Proje Raporu Özeti (Şablon Tablosu)
+## 📋 1. Proje Raporu Özeti 
 
-Ödev yönergesinde belirtilen standart proje raporu şablonu ve projemize ait teknik parametreler aşağıda özetlenmiştir:
+Standart proje raporu şablonu ve projemize ait teknik parametreler aşağıda özetlenmiştir:
 
 | Alan | Açıklama / Proje Değerleri |
 | :--- | :--- |
@@ -29,7 +29,7 @@ Bu proje, **Bilgisayarlı Görü (Computer Vision) – Derin Öğrenme Uygulamas
 
 ---
 
-## 🎯 2. Ödevin Amacı ve Görev Tanımı (Task)
+## 🎯 2.Amaç ve Görev Tanımı 
 Bu çalışmanın temel amacı, farklı ışık, açı ve mesafe koşullarındaki araç fotoğrafları içerisinden plaka bölgesini yüksek doğrulukla tespit eden uçtan uca bir derin öğrenme modeli geliştirmektir. Bilgisayarlı görü görevlerinden **Nesne Tespiti (Object Detection)** seçilmiş ve model çıktıları geometrik en-boy oranı (aspect ratio) filtreleriyle desteklenerek hatalı pozitif (false positive) tahminler minimize edilmiştir.
 
 ---
@@ -43,7 +43,7 @@ Problemin gerçek zamanlı çalışabilmesi ve yüksek doğruluk sunması adına
 
 ---
 
-## 📂 4. Veri Seti Yapısı (Dataset)
+## 📂 4. Veri Seti Yapısı 
 Projede yaklaşık **19.153 görüntü** içeren Roboflow açık kaynaklı plaka veri seti kullanılmıştır. Veri seti modelin genelleme yeteneğini ölçmek için standart alt kümelerine ayrılmıştır:
 - **`train/`**: Modelin ağırlıklarının güncellendiği eğitim kümesi.
 - **`valid/`**: Eğitim esnasında her epoch sonunda başarımını doğrulayan küme.
@@ -79,11 +79,11 @@ Modelin 30 epoch boyunca gösterdiği öğrenme dinamikleri, doğruluk artışla
 ## 📸 6. Gerçek Görüntülerle Test ve Değerlendirme (5 Fotoğraf Analizi)
 Ödev kapsamında telefon kamerası ile dış ortamda çekilen 5 farklı araç fotoğrafı sisteme girdi olarak verilmiş ve modelin başarımı test edilmiştir:
 
-1. **Test Görüntüsü 1 (Ön Cephe - Net Açılı):** Plaka bölgesi yüksek güven skoruyla tam sınırlarından tespit edilmiştir.
-2. **Test Görüntüsü 2 (Yan/Çapraz Açı):** Perspektif bozulmasına rağmen model plakayı başarıyla lokalize etmiştir.
-3. **Test Görüntüsü 3 (Parlak Gün Işığı / Yansıma):** Kaput ve tampon üzerindeki güneş yansımalarına rağmen plaka çerçevesi doğru ayrılmıştır.
-4. **Test Görüntüsü 4 (Uzak Mesafe Çekimi):** Piksel alanı küçülmesine rağmen tespit başarılı bir şekilde gerçekleştirilmiştir.
-5. **Test Görüntüsü 5 (Zorlu Işık / Gölgeli Ortam):** Karanlık ortamlarda dahi model kararlılığını korumuştur.
+1. **Test Görüntüsü 1 ** 
+2. **Test Görüntüsü 2 ** 
+3. **Test Görüntüsü 3 ** 
+4. **Test Görüntüsü 4 ** 
+5. **Test Görüntüsü 5 ** 
 
 ---
 
