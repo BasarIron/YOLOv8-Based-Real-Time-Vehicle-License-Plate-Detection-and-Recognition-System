@@ -76,14 +76,47 @@ Modelin 30 epoch boyunca gösterdiği öğrenme dinamikleri, doğruluk artışla
 
 ---
 
-## 📸 6. Gerçek Görüntülerle Test ve Değerlendirme (5 Fotoğraf Analizi)
-Ödev kapsamında telefon kamerası ile dış ortamda çekilen 5 farklı araç fotoğrafı sisteme girdi olarak verilmiş ve modelin başarımı test edilmiştir:
-
-1. **Test Görüntüsü 1 ** 
-2. **Test Görüntüsü 2 ** 
-3. **Test Görüntüsü 3 ** 
-4. **Test Görüntüsü 4 ** 
-5. **Test Görüntüsü 5 ** 
-
 ---
 
+## 📸 6. Gerçek Görüntülerle Test, Karşılaştırma ve Değerlendirme
+
+Telefon kamerasıyla dış ortamda çekilen 5 farklı araç görüntüsü sisteme girdi olarak verilmiş; tespit süresi, güven skoru (confidence), kırpılan plaka görüntüsü ve okunan plaka metni gerçek değerlerle karşılaştırılmıştır.
+
+### 6.1. Gerçek Sonuç ile Model Çıktısının Karşılaştırma Tablosu
+
+| Test No & Görsel | Araç / Açı | Gerçek Plaka | Sistem Çıktısı | Güven Skoru | Tahmin Süresi | Değerlendirme |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Test 1** (`personal_results/kiaCikti.png`) | Beyaz hatchback - Arka görünüm | `14 AK 473` | `14 AK 473` | `84.78%` | `14.39 ms` | Başarılı tespit ve doğru okuma |
+| **Test 2** (`personal_results/cherryCikti.png`) | Gri SUV - Çapraz ön açı | `34 HFH 626` | `34 HF 626` | `67.57%` | `50.78 ms` | Plaka kutusu doğru bulundu; `HFH` kısmı `HF` olarak eksik okundu |
+| **Test 3** (`personal_results/passatCikti.png`) | Siyah sedan - Ön cephe, parlak gün ışığı | `14 ABE 043` | `14 ABE 043` | `79.42%` | `13.96 ms` | Yüksek hız ve doğru okuma |
+| **Test 4** (`personal_results/renaultCikti.png`) | Açık renk sedan - Çapraz ön açı, sokak ortamı | `17 ABT 682` | `17 ABT 682` | `79.82%` | `13.97 ms` | Çapraz açıda kararlı tespit ve doğru okuma |
+| **Test 5** (`personal_results/tiguanCikti.png`) | Lacivert SUV - Arka çapraz açı | `34 NNM 726` | `34 MHH 726` | `76.22%` | `13.48 ms` | Plaka kutusu doğru bulundu; `NN` kısmı `MH` olarak hatalı okundu |
+
+### 6.2. Görsel Çıktılar ve Durum Analizi
+
+#### 1. Kia Rio (`14 AK 473`)
+![Kia Test Çıktısı](personal_results/kiaCikti.png)
+* Plaka bölgesi `84.78%` güven skoru ve `14.39 ms` tahmin süresiyle net biçimde konumlandırılmıştır.
+* Okunan metin gerçek plaka ile eşleşmektedir; kırpma penceresinde sağ kenar kadrajının dar kalması görsel kırpma sınırlarının biraz daha pay bırakılarak iyileştirilebileceğini göstermektedir.
+
+#### 2. Chery (`34 HFH 626` → `34 HF 626`)
+![Chery Test Çıktısı](personal_results/cherryCikti.png)
+* Çapraz açı ve ön ızgara deseninin yoğun olduğu sahnede plaka `67.57%` güven skoruyla tespit edilmiştir.
+* **Başarısız / Eksik Kısım:** Arayüzdeki metin çıktısında `34 HFH 626` yerine `34 HF 626` okunmuştur; çapraz perspektif ve sağ kenar kırpma sınırına yakınlık nedeniyle sondaki `H` karakteri eksik kalmıştır. Ayrıca tahmin süresinin `50.78 ms` seviyesine çıkması ilk çalıştırma/ısınma veya görüntü boyutlandırma farkından kaynaklanabilmektedir.
+
+#### 3. Volkswagen Passat (`14 ABE 043`)
+![Passat Test Çıktısı](personal_results/passatCikti.png)
+* Parlak gün ışığı ve zemin yansımalarına rağmen plaka kutusu `79.42%` güven skoru ve `13.96 ms` sürede yakalanmış, karakterler hatasız (`14 ABE 043`) elde edilmiştir.
+
+#### 4. Renault (`17 ABT 682`)
+![Renault Test Çıktısı](personal_results/renaultCikti.png)
+* Kalabalık cadde ve park halindeki diğer araçların bulunduğu sahnede yalnızca hedef aracın plakası odaklanmış, `79.82%` güven skoru ve `13.97 ms` süreyle `17 ABT 682` olarak doğru sonuç üretilmiştir.
+
+#### 5. Volkswagen Tiguan (`34 NNM 726` → `34 MHH 726`)
+![Tiguan Test Çıktısı](personal_results/tiguanCikti.png)
+* Plaka lokasyonu `76.22%` güven skoru ve `13.48 ms` süreyle başarılı şekilde bulunmuştur.
+* **Başarısız / Hatalı Kısım:** Arayüzdeki metin çıktısında `34 NNM 726` yerine `34 MHH 726` üretilmiştir. Yan yana duran `N` harflerinin perspektif ve çözünürlük etkisiyle birbirine yaklaşması (`NN` → `MH`) karakter ayrımında karışıklığa yol açmıştır.
+
+### 6.3. Genel Değerlendirme (Başarılı ve Başarısız Durumlar)
+* **Başarılı Olduğu Durumlar:** Farklı araç tiplerinde (hatchback, sedan, SUV), ön ve arka görünümlerde, çapraz açılarda ve güneş ışığı altında plaka yerinin tespiti **5/5** oranında başarılı olmuştur. Çıkarım süreleri çoğunlukla `13.48 ms - 14.39 ms` bandında gerçekleşerek gerçek zamanlı kullanım için uygundur.
+* **Başarısız / İyileştirmeye Açık Durumlar:** Plaka tespiti doğru yapılsa dahi karakter okumada bitişik veya eğik harflerin (`NN` → `MH`) karışabilmesi ve çapraz açılarda kenar karakterlerin (`HFH` → `HF`) eksik okunması ile kırpılan plaka görsellerinde kenar payının dar kalması sistemin en belirgin zayıf noktalarıdır. Kırpma kutusuna küçük bir padding (kenar boşluğu) eklenmesi ve düşük kontrastlı/eğik plakalar için ön işleme adımlarının güçlendirilmesi sonraki sürümlerde doğruluk kayıplarını azaltacaktır.
